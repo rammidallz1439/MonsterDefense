@@ -1,0 +1,17 @@
+{
+    "name": "VaultAssembly",
+    "rootNamespace": "",
+    "references": [
+        "GUID:0189a3c650e45874eaef120cb7d08744",
+        "GUID:2bafac87e7f4b9b418d9448d219b01ab"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

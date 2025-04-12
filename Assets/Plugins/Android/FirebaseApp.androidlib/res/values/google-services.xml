@@ -1,0 +1,11 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources xmlns:tools="http://schemas.android.com/tools" tools:keep="@string/gcm_defaultSenderId,@string/google_storage_bucket,@string/project_id,@string/google_api_key,@string/google_crash_reporting_api_key,@string/google_app_id,@string/default_android_client_id,@string/default_web_client_id">
+  <string name="gcm_defaultSenderId" translatable="false">49771020959</string>
+  <string name="google_storage_bucket" translatable="false">monster-defense-5c938.firebasestorage.app</string>
+  <string name="project_id" translatable="false">monster-defense-5c938</string>
+  <string name="google_api_key" translatable="false">AIzaSyA7ISqwbbSAxLhMIZvQM5EMRx57sdfYPpI</string>
+  <string name="google_crash_reporting_api_key" translatable="false">AIzaSyA7ISqwbbSAxLhMIZvQM5EMRx57sdfYPpI</string>
+  <string name="google_app_id" translatable="false">1:49771020959:android:2972e85d92506ef741d8aa</string>
+  <string name="default_android_client_id" translatable="false">49771020959-bt37bj6ckekperc82v9ma0d8mk2okhg9.apps.googleusercontent.com</string>
+  <string name="default_web_client_id" translatable="false">49771020959-jvgcncgdnetloh1rrkj31pmj4r7803or.apps.googleusercontent.com</string>
+</resources>

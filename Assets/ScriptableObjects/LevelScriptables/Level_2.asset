@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c3f6f02412880c40919b4a8292f57d4, type: 3}
+  m_Name: Level_2
+  m_EditorClassIdentifier: 
+  Id: 1
+  LevelIcon: {fileID: 21300000, guid: f5295f5c3aec14643b9d10f178d1f591, type: 3}
+  WaveData:
+    Waves:
+    - EnemyData:
+      - EnemyScriptable: {fileID: 11400000, guid: 9ce60e7e3cd53b44592b98b8ac243dbc,
+          type: 2}
+        MaxCount: 0
+        TimeToStart: 0
+      WaveTime: 10
+      EnemiesInterval: 0
+    - EnemyData:
+      - EnemyScriptable: {fileID: 11400000, guid: 9ce60e7e3cd53b44592b98b8ac243dbc,
+          type: 2}
+        MaxCount: 0
+        TimeToStart: 0
+      - EnemyScriptable: {fileID: 11400000, guid: 6c17c4381b1866a4db2718ac7ee30e32,
+          type: 2}
+        MaxCount: 20
+        TimeToStart: 5
+      WaveTime: 15
+      EnemiesInterval: 0
+    - EnemyData:
+      - EnemyScriptable: {fileID: 11400000, guid: 6c17c4381b1866a4db2718ac7ee30e32,
+          type: 2}
+        MaxCount: 0
+        TimeToStart: 0
+      WaveTime: 20
+      EnemiesInterval: 0
+    - EnemyData:
+      - EnemyScriptable: {fileID: 11400000, guid: 6c17c4381b1866a4db2718ac7ee30e32,
+          type: 2}
+        MaxCount: 0
+        TimeToStart: 0
+      - EnemyScriptable: {fileID: 11400000, guid: 7e263d386a3513f4d9215d28b2adbba0,
+          type: 2}
+        MaxCount: 20
+        TimeToStart: 5
+      WaveTime: 25
+      EnemiesInterval: 0
+    - EnemyData:
+      - EnemyScriptable: {fileID: 11400000, guid: 9ce60e7e3cd53b44592b98b8ac243dbc,
+          type: 2}
+        MaxCount: 0
+        TimeToStart: 0
+      - EnemyScriptable: {fileID: 11400000, guid: 7e263d386a3513f4d9215d28b2adbba0,
+          type: 2}
+        MaxCount: 10
+        TimeToStart: 15
+      WaveTime: 30
+      EnemiesInterval: 0
+  BossEnemy: {fileID: 11400000, guid: 45b11f254044c54429233f4105237517, type: 2}

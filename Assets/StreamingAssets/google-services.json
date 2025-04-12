@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "49771020959",
+    "project_id": "monster-defense-5c938",
+    "storage_bucket": "monster-defense-5c938.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:49771020959:android:2972e85d92506ef741d8aa",
+        "android_client_info": {
+          "package_name": "com.BoxGameStudio.MonsterDefense"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "49771020959-bt37bj6ckekperc82v9ma0d8mk2okhg9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.BoxGameStudio.MonsterDefense",
+            "certificate_hash": "b49c25e99af69c682b61900ccba0aa4d520a6699"
+          }
+        },
+        {
+          "client_id": "49771020959-jvgcncgdnetloh1rrkj31pmj4r7803or.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA7ISqwbbSAxLhMIZvQM5EMRx57sdfYPpI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "49771020959-jvgcncgdnetloh1rrkj31pmj4r7803or.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
