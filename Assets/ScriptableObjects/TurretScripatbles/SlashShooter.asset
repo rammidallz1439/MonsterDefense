@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a2b5a0b3a6098d4c9d18e1dc585db4d, type: 3}
+  m_Name: SlashShooter
+  m_EditorClassIdentifier: 
+  AttackPower: 20
+  Range: 15
+  Bullet: {fileID: 6345334692793136825, guid: 38642c31a54c2dd408a00454b59b9fb0, type: 3}
