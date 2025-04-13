@@ -323,3 +323,13 @@ public struct RevertBossIdleAnimationEvent : GameEvent
         EnemyWeapon = enemyWeapon;
     }
 }
+
+public struct AddBossAsTargetEvent : GameEvent
+{
+    public Enemy BossEnemy;
+
+    public AddBossAsTargetEvent(Enemy bossEnemy)
+    {
+        BossEnemy = bossEnemy;
+    }
+}

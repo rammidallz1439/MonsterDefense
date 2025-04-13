@@ -63,7 +63,7 @@ public class GridManager : MonoBehaviour
                     BaseHandler handler = obj.GetComponent<BaseHandler>();
                     handler.Id = index;
                     index++;
-                    EventManager.Instance.TriggerEvent(new AddSpawnedBasesEvent(handler));
+                   // EventManager.Instance.TriggerEvent(new AddSpawnedBasesEvent(handler));
                         
                 }
             }

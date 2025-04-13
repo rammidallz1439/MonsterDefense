@@ -66,6 +66,7 @@ public class EnemyManager
             e.Reached = true;
             agent.isStopped = true;
             GenericEventsController.Instance.ChangeAnimationEvent(e.Animator, GameConstants.EnemyAttack);
+            EventManager.Instance.TriggerEvent(new AddBossAsTargetEvent(e));
         }
     }
     protected void FindTargetEventHandler(FindTargetEvent e)
@@ -155,6 +156,8 @@ public class EnemyManager
         enemy.transform.GetComponent<Enemy>().Health = data.EnemyScriptable.Health;
         GenericEventsController.Instance.ChangeAnimationEvent(enemy.transform.GetComponent<Enemy>().Animator, GameConstants.EnemyWalk);
     }
+
+  
 
     #endregion
 }

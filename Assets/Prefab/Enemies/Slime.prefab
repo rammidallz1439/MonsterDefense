@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPower: 0
+  AssociatedEnemy: {fileID: 5943960196786625499}
 --- !u!135 &4134676670645717847
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -234,6 +235,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9cde2b11d8cf54a956c3697817d8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 0}
+  m_Weapon: {fileID: 0}
+  Enemy: {fileID: 0}
 --- !u!95 &4839947452113296034
 Animator:
   serializedVersion: 5
@@ -756,13 +760,13 @@ MonoBehaviour:
   Health: 0
   _healthBar: {fileID: 4623016740164881362}
   _worldCanvas: {fileID: 2140744794430888152}
-  _dropValue: 5
+  _dropValue: 50
   _Coin: {fileID: 6962304540837371318, guid: 17dc0b7eba3a87a49a6f2789f4bb7080, type: 3}
   AttackPower: 1
   Animator: {fileID: 4839947452113296034}
   Reached: 0
   EnemyWeapon: {fileID: 2612167055813631251}
-  SlimeAttackOrigin: {fileID: 4060911486878573687}
+  IsEnemyBoss: 0
 --- !u!136 &6623079149820982952
 CapsuleCollider:
   m_ObjectHideFlags: 0

@@ -75,12 +75,13 @@ MonoBehaviour:
   Health: 0
   _healthBar: {fileID: 662020737013050899}
   _worldCanvas: {fileID: 2192472885340841279}
-  _dropValue: 10
+  _dropValue: 90
   _Coin: {fileID: 6962304540837371318, guid: 17dc0b7eba3a87a49a6f2789f4bb7080, type: 3}
   AttackPower: 2
   Animator: {fileID: 8674316659757757781}
   Reached: 0
   EnemyWeapon: {fileID: 1185274689913058807}
+  IsEnemyBoss: 0
 --- !u!136 &6449872207362605498
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -405,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   AttackPower: 0
+  AssociatedEnemy: {fileID: 6145919874639201788}
 --- !u!4 &8251513995162785882 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e86ba60be4155ad4ca7c6d89b9088c15,
@@ -450,3 +452,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac9cde2b11d8cf54a956c3697817d8d0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_Animator: {fileID: 0}
+  m_Weapon: {fileID: 0}
+  Enemy: {fileID: 0}

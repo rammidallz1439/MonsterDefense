@@ -32,6 +32,7 @@ public class LevelController : LevelManager, IController, ITick, IPausable
         EventManager.Instance.AddListener<UpdateCurrentCoinsEvent>(UpdateCurrentCoinsEventHandler);
         EventManager.Instance.AddListener<GetCurrentAvailableCurrencyEvent>(GetCurrentAvailableCurrencyEventHandler);
         EventManager.Instance.AddListener<GameOverEvent>(GameOverEventHandler);
+        EventManager.Instance.AddListener<AddBossAsTargetEvent>(AddBossAsTargetEventHandler);
     }
 
     public void OnRelease()
@@ -51,6 +52,7 @@ public class LevelController : LevelManager, IController, ITick, IPausable
         EventManager.Instance.RemoveListener<UpdateCurrentCoinsEvent>(UpdateCurrentCoinsEventHandler);
         EventManager.Instance.RemoveListener<GetCurrentAvailableCurrencyEvent>(GetCurrentAvailableCurrencyEventHandler);
         EventManager.Instance.RemoveListener<GameOverEvent>(GameOverEventHandler);
+        EventManager.Instance.RemoveListener<AddBossAsTargetEvent>(AddBossAsTargetEventHandler);
 
     }
 

@@ -29,7 +29,8 @@ public class LevelManager
 
         Handler.Timer = Handler.CurrentWave.WaveTime;
 
-        Handler.RestartButton.onClick.AddListener(async () => {
+        Handler.RestartButton.onClick.AddListener(async () =>
+        {
             await FirebaseManager.Instance.LoadCollectionDataAsync<PlayerData>(GameConstants.PlayerData, GameConstants.PlayerDataDoc, async (data) =>
             {
                 data.Currency = Handler.CurrentCoins;
@@ -44,6 +45,13 @@ public class LevelManager
         });
 
         Handler.PlayAgainButton.onClick.AddListener(() => { SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex); });
+
+        Handler.SkipButton.onClick.AddListener(() =>
+        {
+            Handler.CurrentSelectedBase.transform.GetComponent<MeshRenderer>().material.color = Handler.CurrentSelectedBase.GetColor();
+            Handler.CurrentSelectedBase = null;
+            Handler.BaseSelected = false;
+        });
     }
 
     protected void BaseSelectedEventHandler(BaseSelectedEvent e)
@@ -90,6 +98,16 @@ public class LevelManager
 
     }
 
+    protected void AddBossAsTargetEventHandler(AddBossAsTargetEvent e)
+    {
+        foreach (var item in Handler.SpawnedCharacters)
+        {
+            item.Target = e.BossEnemy;
+        }
+    }
+
+
+
     protected void UpdateTimerEventHandler(UpdateTimerEvent e)
     {
         if (Handler.LevelDetails != null)
@@ -135,17 +153,17 @@ public class LevelManager
     }
 
 
-    protected  void UpdateCurrentCoinsEventHandler(UpdateCurrentCoinsEvent e)
+    protected void UpdateCurrentCoinsEventHandler(UpdateCurrentCoinsEvent e)
     {
         Handler.CurrentCoins += e.Value;
-  /*      await FirebaseManager.Instance.LoadCollectionDataAsync<PlayerData>(GameConstants.PlayerData, GameConstants.PlayerDataDoc, async (data) =>
-        {
-            data.Currency = Handler.CurrentCoins;
-            await FirebaseManager.Instance.UpdateCollectionDataAsync(GameConstants.PlayerData, GameConstants.PlayerDataDoc, data);
-        }, () =>
-        {
-            MonoHelper.Instance.PrintMessage("Data noesn't Exsists check firebase", "black");
-        });*/
+        /*      await FirebaseManager.Instance.LoadCollectionDataAsync<PlayerData>(GameConstants.PlayerData, GameConstants.PlayerDataDoc, async (data) =>
+              {
+                  data.Currency = Handler.CurrentCoins;
+                  await FirebaseManager.Instance.UpdateCollectionDataAsync(GameConstants.PlayerData, GameConstants.PlayerDataDoc, data);
+              }, () =>
+              {
+                  MonoHelper.Instance.PrintMessage("Data noesn't Exsists check firebase", "black");
+              });*/
     }
 
     protected void GetCurrentAvailableCurrencyEventHandler(GetCurrentAvailableCurrencyEvent e)
@@ -239,7 +257,7 @@ public class LevelManager
                 Handler.HireHandler.HireDataToSave.Add(data);
             }
             Handler.HireHandler.SavedHireData.HireData = Handler.HireHandler.HireDataToSave;
-           // DataManager.Instance.SaveJson(Handler.HireHandler.SavedHireData, GameConstants.SaveHireData);
+            // DataManager.Instance.SaveJson(Handler.HireHandler.SavedHireData, GameConstants.SaveHireData);
         }
 
     }

@@ -19,13 +19,31 @@ public class HouseHandler : MonoBehaviour
     {
         if (other.gameObject.tag is "Enemy")
         {
-            other.transform.GetComponent<Enemy>().Reached = true;
-            GenericEventsController.Instance.ChangeAnimationEvent(other.transform.GetComponent<Enemy>().Animator, GameConstants.EnemyAttack);
+            if (!other.transform.GetComponent<Enemy>().IsEnemyBoss)
+            {
+                other.transform.GetComponent<Enemy>().Reached = true;
+                GenericEventsController.Instance.ChangeAnimationEvent(other.transform.GetComponent<Enemy>().Animator, GameConstants.EnemyAttack);
+            }
+       
         }
 
         if (other.gameObject.tag is "EnemyWeapon")
         {
-            TakeDamage(other.transform.GetComponent<EnemyWeapon>().AttackPower);
+            if (!other.transform.GetComponent<EnemyWeapon>().AssociatedEnemy.IsEnemyBoss)
+            {
+                TakeDamage(other.transform.GetComponent<EnemyWeapon>().AttackPower);
+            }
+        }
+    }
+
+    private void OnTriggerStay(Collider other)
+    {
+        if (other.gameObject.tag is "EnemyWeapon")
+        {
+            if (other.transform.GetComponent<EnemyWeapon>().AssociatedEnemy.IsEnemyBoss)
+            {
+                TakeDamage(other.transform.GetComponent<EnemyWeapon>().AttackPower);
+            }
         }
     }
 

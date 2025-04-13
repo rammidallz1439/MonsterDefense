@@ -13,7 +13,7 @@ public class EnemyAniamtionEventsController : MonoBehaviour
     /// </summary>
     public void OnDeathAniamtionCompleted()
     {
-        Destroy(transform.parent.gameObject);
+       
         if (Enemy !=null)
         {
             if (Enemy.IsEnemyBoss)
@@ -21,6 +21,8 @@ public class EnemyAniamtionEventsController : MonoBehaviour
                 EventManager.Instance.TriggerEvent(new GameOverEvent());
             }
         }
+
+        Destroy(transform.parent.gameObject);
     }
 
     public void RevertBossAnimation()

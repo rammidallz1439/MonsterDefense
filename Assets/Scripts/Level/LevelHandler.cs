@@ -31,6 +31,7 @@ public class LevelHandler : MonoBehaviour
     public TMP_Text CoinCount;
     public Button RestartButton;
     public Button PlayAgainButton;
+    public Button SkipButton;
 
     [Space(10)]
     [Header("GameObjects")]
