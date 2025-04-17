@@ -14,44 +14,42 @@ public class TurretManager
     #region Event Handler
     protected void BulletFireEventHandler(BulletFireEvent e)
     {
-        if (e.ShootingMachine.CoolDown <= 0)
+        if (e.ShootingMachineBase.CoolDown <= 0)
         {
-            if (e.ShootingMachine.Target != null && e.ShootingMachine.TurretDataScriptable != null)
+            if (e.ShootingMachineBase.Target != null)
             {
-                GenericEventsController.Instance.PlayNonloopAnimation(e.ShootingMachine.Animator, GameConstants.CharacterAttack);
-                if (e.ShootingMachine.TurretDataScriptable.Bullet.gameObject != null)
-                {
 
-                    GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachine.TurretDataScriptable.Bullet.gameObject.name, true);
-                    if(ammo != null)
-                    {
-                        ammo.transform.position = e.ShootingMachine.SpawnPoint.position;
-                        ammo.transform.GetComponent<Bullet>().AttackPower = e.ShootingMachine.TurretDataScriptable.AttackPower;
-                        ammo.transform.GetComponent<Bullet>().Target = e.ShootingMachine.Target.transform;
-                        ammo.transform.GetComponent<Bullet>().TargetPoint = e.ShootingMachine.Target.transform.position;
-                    }
-                }
+                // GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
+                GameObject ammo = MonoHelper.Instance.InstantiateObject(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject, e.ShootingMachineBase.SpawnPoint);
+                MonoHelper.Instance.PrintMessage("Bullet Created", "red");
+                GenericEventsController.Instance.ChangeAnimationEvent(e.ShootingMachineBase.Animator, GameConstants.CharacterAttack);
+                ammo.transform.position = e.SpawnPoint.position;
+
+                Bullet b = ammo.transform.GetComponent<Bullet>();
+                b.AttackPower = e.ShootingMachineBase.TurretDataScriptable.AttackPower;
+                b.Target = e.ShootingMachineBase.Target.transform;
+                b.TargetPoint = e.ShootingMachineBase.Target.transform.position;
 
             }
-            e.ShootingMachine.CoolDown = 1f / e.ShootingMachine.FireRate;
+            e.ShootingMachineBase.CoolDown = 1f / e.ShootingMachineBase.FireRate;
         }
-        e.ShootingMachine.CoolDown -= Time.deltaTime;
+        e.ShootingMachineBase.CoolDown -= Time.deltaTime;
     }
     protected void LookAtTargetEventHandler(LookAtTargetEvent e)
     {
-        if (e.ShootingMachine.Target == null)
+        if (e.Target == null)
             return;
 
-        if (e.ShootingMachine.Target != null)
+        if (e.Target != null)
         {
-            if (e.ShootingMachine.Target.gameObject.activeSelf)
+            if (e.Target.gameObject.activeSelf)
             {
-                Vector3 direction = e.ShootingMachine.Target.transform.position - e.ShootingMachine.PartToRotate.position;
+                Vector3 direction = e.Target.transform.position - e.PartToRotate.position;
                 Quaternion lookRotation = Quaternion.LookRotation(direction);
-                if (e.ShootingMachine.PartToRotate is not null)
+                if (e.PartToRotate is not null)
                 {
-                    Vector3 rotation = Quaternion.Lerp(e.ShootingMachine.PartToRotate.rotation, lookRotation, Time.deltaTime * Handler.RotationSpeed).eulerAngles;
-                    e.ShootingMachine.PartToRotate.rotation = Quaternion.Euler(0, rotation.y, 0);
+                    Vector3 rotation = Quaternion.Lerp(e.PartToRotate.rotation, lookRotation, Time.deltaTime * Handler.RotationSpeed).eulerAngles;
+                    e.PartToRotate.rotation = Quaternion.Euler(0, rotation.y, 0);
                 }
             }
 
@@ -61,51 +59,41 @@ public class TurretManager
 
     protected void BulletEventhandler(BulletEvent e)
     {
-        if (e.Target == null)
+        if (e.Bullet.Target == null)
         {
-            Vault.ObjectPoolManager.Instance.ReturnToPool(e.Current);
+            Vault.ObjectPoolManager.Instance.ReturnToPool(e.Bullet.gameObject);
             return; // Exit early if there's no target
         }
 
         // Calculate the target position with additional height
-        Vector3 additionalHeight = e.Target.position + new Vector3(0, 1.5f, 0);
-        Vector3 direction = (additionalHeight - e.Current.transform.position).normalized;
-        float distanceThisFrame = e.Speed * Time.deltaTime;
+        Vector3 additionalHeight = e.Bullet.Target.position + new Vector3(0, 1.5f, 0);
+        Vector3 direction = (additionalHeight - e.Bullet.transform.position).normalized;
+        float distanceThisFrame = e.Bullet._speed * Time.deltaTime;
 
         // Translate the bullet towards the target
-        e.Current.transform.Translate(direction * distanceThisFrame, Space.World);
+        e.Bullet.transform.Translate(direction * distanceThisFrame, Space.World);
 
         // Constrain rotation to the Y-axis only
         if (direction != Vector3.zero) // Ensure the direction isn't zero to avoid errors
         {
             Quaternion targetRotation = Quaternion.LookRotation(direction);
-            e.Current.transform.rotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, 0);
+            e.Bullet.transform.rotation = Quaternion.Euler(-90, targetRotation.eulerAngles.y, 0);
         }
     }
 
 
     protected void RocketEventHandler(RocketEvent e)
     {
-        /*
-        e.Current.transform.GetComponent<Bullet>().velocity += new Vector3(0, e.Gravity * Time.deltaTime, 0);
 
-        e.Current.transform.position += e.Current.transform.GetComponent<Bullet>().velocity * Time.deltaTime;
-
-        if (e.Current.transform.GetComponent<Bullet>().velocity != Vector3.zero)
-        {
-            e.Current.transform.rotation = Quaternion.LookRotation(e.Current.transform.GetComponent<Bullet>().velocity);
-        }
-        */
-        
-        e.Current.transform.GetComponent<Bullet>().velocity += new Vector3(0, e.Gravity, 0) * Time.deltaTime;
+        e.Bullet.velocity += new Vector3(0, e.Bullet._garvity, 0) * Time.deltaTime;
 
         // Update the position based on the current velocity
-        e.Current.transform.position += e.Current.transform.GetComponent<Bullet>().velocity * (e.Current.transform.GetComponent<Bullet>()._speed * Time.deltaTime);
+        e.Bullet.transform.position += e.Bullet.velocity * e.Bullet._speed * Time.deltaTime;
 
         // Calculate the rotation to face the direction of the velocity
-        if (e.Current.transform.GetComponent<Bullet>().velocity != Vector3.zero)
+        if (e.Bullet.velocity != Vector3.zero)
         {
-            e.Current.transform.rotation = Quaternion.LookRotation(e.Current.transform.GetComponent<Bullet>().velocity);
+            e.Bullet.transform.rotation = Quaternion.LookRotation(e.Bullet.velocity);
         }
     }
 
@@ -144,7 +132,7 @@ public class TurretManager
 
             float angle = angleDeg * Mathf.Deg2Rad;
 
-            float velocitySqr = (gravity * distance * distance) / 
+            float velocitySqr = (gravity * distance * distance) /
                                 (2 * (h - Mathf.Tan(angle) * distance) * Mathf.Pow(Mathf.Cos(angle), 2));
 
             if (velocitySqr <= 0 || float.IsNaN(velocitySqr))
@@ -169,22 +157,22 @@ public class TurretManager
 
     protected void LaserShootEventHandler(LaserShootEvent e)
     {
-        if (e.ShootingMachine.CoolDown <= 0)
+        if (e.CoolDown <= 0)
         {
-            if (e.ShootingMachine.Target != null && e.ShootingMachine.TurretDataScriptable != null)
+            if (e.Target != null && e.TurretDataScriptable != null)
             {
-                if (e.ShootingMachine.LaserPointer != null)
+                if (e.LaserPointer != null)
                 {
-                    e.ShootingMachine.LaserPointer.gameObject.SetActive(true);
-                    e.ShootingMachine.LaserPointer.transform.position = e.ShootingMachine.Target.transform.position + new Vector3(0, 1.5f, 0);
-                    e.ShootingMachine.LaserPointer.AttackPower = e.ShootingMachine.TurretDataScriptable.AttackPower;
-                    e.ShootingMachine.LaserPointer.Target = e.ShootingMachine.Target.transform;
+                    e.LaserPointer.gameObject.SetActive(true);
+                    e.LaserPointer.transform.position = e.Target.transform.position + new Vector3(0, 1.5f, 0);
+                    e.LaserPointer.AttackPower = e.TurretDataScriptable.AttackPower;
+                    e.LaserPointer.Target = e.Target.transform;
                 }
 
             }
-            e.ShootingMachine.CoolDown = 1f / e.ShootingMachine.FireRate;
+            e.CoolDown = 1f / e.FireRate;
         }
-        e.ShootingMachine.CoolDown -= Time.deltaTime;
+        e.CoolDown -= Time.deltaTime;
     }
 
     protected void ChangeToIdleAnimationEventHandler(ChangeToIdleAnimationEvent e)
@@ -193,24 +181,24 @@ public class TurretManager
 
     }
 
-    protected void UpdateHireTimerEventHandler(UpdateHireTimerEvent e)
-    {
-        if (e.Character.Timer > 0)
+    /*    protected void UpdateHireTimerEventHandler(UpdateHireTimerEvent e)
         {
-            e.Character.Timer -= Time.deltaTime;
-            UpdateTimer(e.Character.TimerText, e.Character.Timer);
-        }
-        else
-        {
-            e.Character.Timer = 0;
-            UpdateTimer(e.Character.TimerText, e.Character.Timer);
-            EventManager.Instance.TriggerEvent(new RemoveSpawnedCharactersEvent(e.Character));
-            MonoHelper.Instance.DestroyObject(e.Character.gameObject);
+            if (e.Character.Timer > 0)
+            {
+                e.Character.Timer -= Time.deltaTime;
+                UpdateTimer(e.Character.TimerText, e.Character.Timer);
+            }
+            else
+            {
+                e.Character.Timer = 0;
+                UpdateTimer(e.Character.TimerText, e.Character.Timer);
+                EventManager.Instance.TriggerEvent(new RemoveSpawnedCharactersEvent(e.Character));
+                MonoHelper.Instance.DestroyObject(e.Character.gameObject);
+
+            }
 
         }
-
-    }
-
+    */
 
     #endregion
 

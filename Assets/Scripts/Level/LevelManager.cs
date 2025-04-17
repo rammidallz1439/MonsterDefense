@@ -1,6 +1,7 @@
 using DG.Tweening;
 using MEC;
 using Newtonsoft.Json;
+using Syntax.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -86,13 +87,12 @@ public class LevelManager
         {
             GameObject obj = MonoHelper.Instance.InstantiateObject(e.Turret, Handler.CurrentSelectedBase.SpawnPoint.transform.position, Quaternion.identity);
             Handler.CurrentSelectedBase.Occupied = true;
-            ShootingMachine machine = obj.transform.GetComponent<ShootingMachine>();
-            Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15);
-            machine.Timer = Handler.HireDuration;
+            ShootingMachineBase machine = obj.transform.GetComponent<ShootingMachineBase>();
+         //   Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15);
+         /*   machine.Timer = Handler.HireDuration;
             machine.SpawnedBase = Handler.CurrentSelectedBase;
-            machine.BaseIndex = Handler.CurrentSelectedBase.Id;
+            machine.BaseIndex = Handler.CurrentSelectedBase.Id;*/
             Handler.SpawnedCharacters.Add(machine);
-
             Handler.BaseSelected = false;
         }
 
@@ -145,13 +145,13 @@ public class LevelManager
     }
 
 
-    protected void RemoveSpawnedCharactersEventHandler(RemoveSpawnedCharactersEvent e)
+/*    protected void RemoveSpawnedCharactersEventHandler(RemoveSpawnedCharactersEvent e)
     {
         e.Machine.SpawnedBase.transform.GetComponent<MeshRenderer>().material.color = Handler.CurrentSelectedBase.GetColor();
         e.Machine.SpawnedBase.Occupied = false;
         Handler.SpawnedCharacters.Remove(e.Machine);
     }
-
+*/
 
     protected void UpdateCurrentCoinsEventHandler(UpdateCurrentCoinsEvent e)
     {
@@ -240,7 +240,7 @@ public class LevelManager
         }
     }
 
-    protected void SavedHiredDataOnDestroyEventHandler()
+/*    protected void SavedHiredDataOnDestroyEventHandler()
     {
         Debug.Log("<color=red> came to SaveData</color>");
         if (Handler.SpawnedCharacters.Count > 0)
@@ -260,7 +260,7 @@ public class LevelManager
             // DataManager.Instance.SaveJson(Handler.HireHandler.SavedHireData, GameConstants.SaveHireData);
         }
 
-    }
+    }*/
 
     #endregion
 }

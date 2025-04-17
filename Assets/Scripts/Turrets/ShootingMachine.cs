@@ -1,42 +1,13 @@
-using System;
+/*using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using Vault;
 
-public class ShootingMachine : MonoBehaviour
+public class ShootingMachine : ShootingMachineBase
 {
-    public Transform PartToRotate;
-    public Transform SpawnPoint;
-    public Enemy Target = null;
-
-    public TurretDataScriptable TurretDataScriptable;
-    private ITurretAction turretAction;
-
-    public float CoolDown;
-    public float FireRate;
-    public Animator Animator;
-
-    [Space(10)]
-    [Header("Laser Specific")]
-    public Bullet LaserPointer = null;
-
-
-    [Space(10)]
-    [Header("Ui")]
-    public TMP_Text TimerText;
-
-    [Space(10)]
-    [SerializeField] private Camera Camera = null;
-
-
-    [Space(10)]
-    [Header("Extra Data")]
-    public int Index;
-    public int BaseIndex;
-    public float Timer;
-    public BaseHandler SpawnedBase = null;
+    
 
 
     private void Start()
@@ -49,8 +20,8 @@ public class ShootingMachine : MonoBehaviour
         if (turretAction is not null)
             turretAction.Excute();
 
-        /*if (TimerText != null)
-            MonoHelper.Instance.FaceCamera(Camera, TimerText.transform);*/
+        *//*if (TimerText != null)
+            MonoHelper.Instance.FaceCamera(Camera, TimerText.transform);*//*
 
     }
 
@@ -77,3 +48,4 @@ public class ShootingMachine : MonoBehaviour
 
 
 }
+*/

@@ -1,3 +1,4 @@
+using Syntax.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -13,7 +14,7 @@ public class HireTimerHandler : MonoBehaviour
     [Space(10)]
     [Header("PlaceMentData")]
     public List<BaseHandler> BaseHandlers;
-    public List<ShootingMachine> Characters;
+    public List<ShootingMachineBase> Characters;
     public SavedHireData SavedHireData;
 
     [Space(10)]

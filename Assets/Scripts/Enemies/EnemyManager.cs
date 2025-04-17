@@ -11,7 +11,7 @@ public class EnemyManager
     #region EventHandlers
     protected void EnemySpawnEventHandler(EnemySpawnEvent e)
     {
-       
+
         if (Handler.CoolDownTime <= 0)
         {
             foreach (EnemyData item in e.Wave.EnemyData)
@@ -46,7 +46,7 @@ public class EnemyManager
             else
             {
                 e.Agent.SetDestination(Handler.BossEnemyStopPoint.position);
-                StopBossEnemy(e.Enemy,e.Agent); 
+                StopBossEnemy(e.Enemy, e.Agent);
             }
         }
         else
@@ -57,10 +57,10 @@ public class EnemyManager
     }
 
 
-    private void StopBossEnemy(Enemy e,NavMeshAgent agent)
+    private void StopBossEnemy(Enemy e, NavMeshAgent agent)
     {
         float distance = Vector3.Distance(e.transform.position, Handler.BossEnemyStopPoint.position);
-        if(distance <= 0.35f)
+        if (distance <= 0.35f)
         {
             MonoHelper.Instance.PrintMessage("Boss Reached the Stop point", "red");
             e.Reached = true;
@@ -71,57 +71,38 @@ public class EnemyManager
     }
     protected void FindTargetEventHandler(FindTargetEvent e)
     {
-        if (e.ShootingMachine.Target == null)
+        // Find all enemies in the scene
+        GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
+
+        float shortestDistance = Mathf.Infinity;
+        GameObject nearestEnemy = null;
+
+        // Loop through enemies to find the nearest one
+        foreach (GameObject enemy in enemies)
         {
-            GameObject[] enemies = GameObject.FindGameObjectsWithTag("Enemy");
-
-            float shortestDistance = Mathf.Infinity;
-            GameObject nearestEnemy = null;
-
-            foreach (GameObject enemy in enemies)
+            if (enemy != null)
             {
-                if (enemy != null)
+                float distanceToEnemy = Vector3.Distance(e.Current.position, enemy.transform.position);
+                if (distanceToEnemy < shortestDistance)
                 {
-                    float distanceToEnemy = Vector3.Distance(e.ShootingMachine.transform.position, enemy.transform.position);
-                    if (distanceToEnemy < shortestDistance)
-                    {
-                        shortestDistance = distanceToEnemy;
-                        nearestEnemy = enemy;
-                    }
+                    shortestDistance = distanceToEnemy;
+                    nearestEnemy = enemy;
                 }
-                else
-                {
-
-                    e.ShootingMachine.Target = null;
-                }
-            }
-
-            if (nearestEnemy != null && shortestDistance <= e.ShootingMachine.TurretDataScriptable.Range)
-            {
-                Enemy enemyComponent = nearestEnemy.GetComponent<Enemy>();
-
-                if (enemyComponent != null)
-                {
-                    e.ShootingMachine.Target = enemyComponent;
-                }
-                else
-                {
-                    e.ShootingMachine.Target = null;
-                }
-
-            }
-            else
-            {
-                e.ShootingMachine.Target = null;
-                EventManager.Instance.TriggerEvent(new ChangeToIdleAnimationEvent(e.ShootingMachine,e.ShootingMachine.Animator));
             }
         }
 
+        // If a nearest enemy is found within range
+        if (nearestEnemy != null && shortestDistance <= e.Target.TurretDataScriptable.Range)
+        {
+            Enemy enemyComponent = nearestEnemy.GetComponent<Enemy>();
+            e.Target.Target = enemyComponent;
+        }
 
     }
 
 
-  protected void SpawnBossEnemyEventHandler(SpawnBossEnemyEvent e)
+
+    protected void SpawnBossEnemyEventHandler(SpawnBossEnemyEvent e)
     {
         GameObject boss = MonoHelper.Instance.InstantiateObject(e.BossObject);
         boss.transform.position = Handler.EnemySpawnPoints[0].transform.position;
@@ -157,7 +138,7 @@ public class EnemyManager
         GenericEventsController.Instance.ChangeAnimationEvent(enemy.transform.GetComponent<Enemy>().Animator, GameConstants.EnemyWalk);
     }
 
-  
+
 
     #endregion
 }

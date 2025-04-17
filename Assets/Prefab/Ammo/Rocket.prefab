@@ -31,7 +31,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0.056477167, y: 1.7181302, z: -9.760432}
-  m_LocalScale: {x: 0.4, y: 0.4, z: 0.8}
+  m_LocalScale: {x: 0.6, y: 0.36236402, z: 0.83808005}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -126,13 +126,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _rigidBody: {fileID: 5980679724414048026}
-  _speed: 15
+  _speed: 1.2
   _bulletType: 2
   Target: {fileID: 0}
   AttackPower: 0
   _blastRadius: 5
   _garvity: -9.8
-  _launchAngle: 45
+  _launchAngle: 60
   velocity: {x: 0, y: 0, z: 0}
   BlastEffect: {fileID: 2719713658766307317, guid: 5eaf45649da632843997aa1ca055ee06,
     type: 3}

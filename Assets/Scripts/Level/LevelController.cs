@@ -28,7 +28,6 @@ public class LevelController : LevelManager, IController, ITick, IPausable
         EventManager.Instance.AddListener<SpawnTurretEvent>(SpawnTurretEventHandler);
         EventManager.Instance.AddListener<UpdateTimerEvent>(UpdateTimerEventHandler);
         EventManager.Instance.AddListener<CoinDobberAnimation>(CoinDobberAnimationHandler);
-        EventManager.Instance.AddListener<RemoveSpawnedCharactersEvent>(RemoveSpawnedCharactersEventHandler);
         EventManager.Instance.AddListener<UpdateCurrentCoinsEvent>(UpdateCurrentCoinsEventHandler);
         EventManager.Instance.AddListener<GetCurrentAvailableCurrencyEvent>(GetCurrentAvailableCurrencyEventHandler);
         EventManager.Instance.AddListener<GameOverEvent>(GameOverEventHandler);
@@ -48,7 +47,6 @@ public class LevelController : LevelManager, IController, ITick, IPausable
         EventManager.Instance.RemoveListener<SpawnTurretEvent>(SpawnTurretEventHandler);
         EventManager.Instance.RemoveListener<UpdateTimerEvent>(UpdateTimerEventHandler);
         EventManager.Instance.RemoveListener<CoinDobberAnimation>(CoinDobberAnimationHandler);
-        EventManager.Instance.RemoveListener<RemoveSpawnedCharactersEvent>(RemoveSpawnedCharactersEventHandler);
         EventManager.Instance.RemoveListener<UpdateCurrentCoinsEvent>(UpdateCurrentCoinsEventHandler);
         EventManager.Instance.RemoveListener<GetCurrentAvailableCurrencyEvent>(GetCurrentAvailableCurrencyEventHandler);
         EventManager.Instance.RemoveListener<GameOverEvent>(GameOverEventHandler);

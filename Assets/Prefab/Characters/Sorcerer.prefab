@@ -484,7 +484,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509807010422460270}
-  - component: {fileID: 7025016478960520616}
+  - component: {fileID: -8736143460648894074}
   m_Layer: 6
   m_Name: Sorcerer
   m_TagString: Untagged
@@ -509,7 +509,7 @@ Transform:
   - {fileID: 6665021718097706023}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7025016478960520616
+--- !u!114 &-8736143460648894074
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -518,7 +518,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215216369744901725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f533829a22fad57489f282f7b7370acd, type: 3}
+  m_Script: {fileID: 11500000, guid: 44c3e6ab03a562c42b58799f78163bee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PartToRotate: {fileID: 6812760576750834205}
@@ -527,15 +527,10 @@ MonoBehaviour:
   TurretDataScriptable: {fileID: 11400000, guid: 18dc4f24049607d42b1001d48e1fcec1,
     type: 2}
   CoolDown: 0
-  FireRate: 1.2
+  FireRate: 1.5
   Animator: {fileID: 5360068292397193621}
   LaserPointer: {fileID: 0}
-  TimerText: {fileID: 6445739961329755803}
   Camera: {fileID: 0}
-  Index: 1
-  BaseIndex: 2
-  Timer: 60
-  SpawnedBase: {fileID: 0}
 --- !u!1 &1364525419622088076
 GameObject:
   m_ObjectHideFlags: 0
@@ -2831,7 +2826,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CharacterAnimator: {fileID: 5360068292397193621}
-  ShootingMachine: {fileID: 7025016478960520616}
 --- !u!1 &6179384324141873158
 GameObject:
   m_ObjectHideFlags: 0
@@ -4325,18 +4319,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee091e1297a426468fc5376263d1ad5, type: 3}
---- !u!114 &6445739961329755803 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1287205046626487175, guid: 9ee091e1297a426468fc5376263d1ad5,
-    type: 3}
-  m_PrefabInstance: {fileID: 5237348213133585692}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &6665021718097706023 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1499739920881717563, guid: 9ee091e1297a426468fc5376263d1ad5,

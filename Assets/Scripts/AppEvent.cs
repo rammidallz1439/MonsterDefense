@@ -1,3 +1,4 @@
+using Syntax.Game;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -67,31 +68,37 @@ public struct SpawnTurretEvent : GameEvent
 
 public struct FindTargetEvent : GameEvent
 {
-    public ShootingMachine ShootingMachine;
+    public ShootingMachineBase Target;
+    public Transform Current;
 
-    public FindTargetEvent(ShootingMachine shootingMachine)
+    public FindTargetEvent(ShootingMachineBase target, Transform current)
     {
-        ShootingMachine = shootingMachine;
+        Target = target;
+        Current = current;
     }
 }
 
 public struct LookAtTargetEvent : GameEvent
 {
-    public ShootingMachine ShootingMachine;
+    public Enemy Target;
+    public Transform PartToRotate;
 
-    public LookAtTargetEvent(ShootingMachine shootingMachine)
+    public LookAtTargetEvent(Enemy target, Transform partToRotate)
     {
-        ShootingMachine = shootingMachine;
+        Target = target;
+        PartToRotate = partToRotate;
     }
 }
 
 public struct BulletFireEvent : GameEvent
 {
-    public ShootingMachine ShootingMachine;
+    public ShootingMachineBase ShootingMachineBase;
+    public Transform SpawnPoint;
 
-    public BulletFireEvent(ShootingMachine shootingMachine)
+    public BulletFireEvent(ShootingMachineBase shootingMachineBase, Transform spawnPoint)
     {
-        ShootingMachine = shootingMachine;
+        ShootingMachineBase = shootingMachineBase;
+        SpawnPoint = spawnPoint;
     }
 }
 
@@ -102,33 +109,21 @@ public struct UpdateTimerEvent : GameEvent
 
 public struct BulletEvent : GameEvent
 {
-    public Transform Target;
-    public GameObject Current;
-    public float Speed;
+    public Bullet Bullet;
 
-    public BulletEvent(Transform target, GameObject current, float speed)
+    public BulletEvent(Bullet bullet)
     {
-        Target = target;
-        Current = current;
-        Speed = speed;
+        Bullet = bullet;
     }
 }
 
 public struct RocketEvent : GameEvent
 {
-    public Transform Target;
-    public GameObject Current;
-    public float Speed;
-    public float BlastRadius;
-    public float Gravity;
+    public Bullet Bullet;
 
-    public RocketEvent(Transform target, GameObject current, float speed, float blastRadius, float gravity)
+    public RocketEvent(Bullet bullet)
     {
-        Target = target;
-        Current = current;
-        Speed = speed;
-        BlastRadius = blastRadius;
-        Gravity = gravity;
+        Bullet = bullet;
     }
 }
 
@@ -174,22 +169,28 @@ public struct CoinDobberAnimation : GameEvent
 
 public struct LaserShootEvent : GameEvent
 {
-    public ShootingMachine ShootingMachine;
+    public float CoolDown;
+    public float FireRate;
+    public Enemy Target;
+    public TurretDataScriptable TurretDataScriptable;
+    public Bullet LaserPointer;
 
-    public LaserShootEvent(ShootingMachine shootingMachine)
+    public LaserShootEvent(float coolDown, float fireRate, Enemy target, TurretDataScriptable turretDataScriptable, Bullet laserPointer)
     {
-        ShootingMachine = shootingMachine;
+        CoolDown = coolDown;
+        FireRate = fireRate;
+        Target = target;
+        TurretDataScriptable = turretDataScriptable;
+        LaserPointer = laserPointer;
     }
 }
 
 public struct ChangeToIdleAnimationEvent : GameEvent
 {
-    public ShootingMachine ShootingMachine;
     public Animator PlayerAnimator;
 
-    public ChangeToIdleAnimationEvent(ShootingMachine shootingMachine, Animator playerAnimator)
+    public ChangeToIdleAnimationEvent(Animator playerAnimator)
     {
-        ShootingMachine = shootingMachine;
         PlayerAnimator = playerAnimator;
     }
 }
@@ -199,7 +200,7 @@ public struct InitHireTimersEvent : GameEvent
 
 }
 
-public struct UpdateHireTimerEvent : GameEvent
+/*public struct UpdateHireTimerEvent : GameEvent
 {
     public ShootingMachine Character;
 
@@ -207,9 +208,9 @@ public struct UpdateHireTimerEvent : GameEvent
     {
         Character = character;
     }
-}
+}*/
 
-public struct RemoveSpawnedCharactersEvent : GameEvent
+/*public struct RemoveSpawnedCharactersEvent : GameEvent
 {
     public ShootingMachine Machine;
 
@@ -218,7 +219,7 @@ public struct RemoveSpawnedCharactersEvent : GameEvent
         Machine = machine;
     }
 }
-
+*/
 
 
 public struct AddSpawnedBasesEvent : GameEvent

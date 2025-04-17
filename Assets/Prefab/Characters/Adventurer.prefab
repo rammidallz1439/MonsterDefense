@@ -543,7 +543,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8509807010422460270}
-  - component: {fileID: 7025016478960520616}
+  - component: {fileID: 9068827144536109767}
   m_Layer: 6
   m_Name: Adventurer
   m_TagString: Untagged
@@ -568,7 +568,7 @@ Transform:
   - {fileID: 7874916512188259235}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &7025016478960520616
+--- !u!114 &9068827144536109767
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -577,7 +577,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1215216369744901725}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f533829a22fad57489f282f7b7370acd, type: 3}
+  m_Script: {fileID: 11500000, guid: 2675eae8c9c863242a44e504f4f60ead, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PartToRotate: {fileID: 7874916512188259235}
@@ -586,15 +586,10 @@ MonoBehaviour:
   TurretDataScriptable: {fileID: 11400000, guid: 25fc62cecd0a0194198e9af6a971f21a,
     type: 2}
   CoolDown: 0
-  FireRate: 1
+  FireRate: 1.2
   Animator: {fileID: 5402662284428938543}
   LaserPointer: {fileID: 0}
-  TimerText: {fileID: 2999720404154998761}
   Camera: {fileID: 0}
-  Index: 0
-  BaseIndex: 0
-  Timer: 60
-  SpawnedBase: {fileID: 0}
 --- !u!1 &1239326916179232865
 GameObject:
   m_ObjectHideFlags: 0
@@ -4614,6 +4609,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7874916512188259235}
   - component: {fileID: 5402662284428938543}
+  - component: {fileID: 263803394067194789}
   m_Layer: 0
   m_Name: AdventurerIdle
   m_TagString: Untagged
@@ -4671,6 +4667,19 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &263803394067194789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7350580980214038809}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c9eb15cc8e4e8d64498fadaaa0853a8a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CharacterAnimator: {fileID: 5402662284428938543}
 --- !u!1 &7350734633145070008
 GameObject:
   m_ObjectHideFlags: 0
@@ -5546,18 +5555,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ee091e1297a426468fc5376263d1ad5, type: 3}
---- !u!114 &2999720404154998761 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1287205046626487175, guid: 9ee091e1297a426468fc5376263d1ad5,
-    type: 3}
-  m_PrefabInstance: {fileID: 4070189718680458350}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &3218968144190489941 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 1499739920881717563, guid: 9ee091e1297a426468fc5376263d1ad5,

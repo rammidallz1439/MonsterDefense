@@ -23,7 +23,6 @@ public class TurretController : TurretManager, IController
         EventManager.Instance.AddListener<CalcualteRocketVelocityEvent>(CalculateRocketVelocityEventHandler);
         EventManager.Instance.AddListener<LaserShootEvent>(LaserShootEventHandler);
         EventManager.Instance.AddListener<ChangeToIdleAnimationEvent>(ChangeToIdleAnimationEventHandler);
-        EventManager.Instance.AddListener<UpdateHireTimerEvent>(UpdateHireTimerEventHandler);
         
     }
 
@@ -42,7 +41,6 @@ public class TurretController : TurretManager, IController
         EventManager.Instance.RemoveListener<CalcualteRocketVelocityEvent>(CalculateRocketVelocityEventHandler);
         EventManager.Instance.RemoveListener<LaserShootEvent>(LaserShootEventHandler);
         EventManager.Instance.RemoveListener<ChangeToIdleAnimationEvent>(ChangeToIdleAnimationEventHandler);
-        EventManager.Instance.RemoveListener<UpdateHireTimerEvent>(UpdateHireTimerEventHandler);
     }
 
     public void OnStarted()

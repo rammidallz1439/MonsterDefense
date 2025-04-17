@@ -8,6 +8,9 @@ public class EnemyAniamtionEventsController : MonoBehaviour
     [SerializeField] private Animator m_Animator = null;
     [SerializeField] private GameObject m_Weapon = null;
     [SerializeField] private Enemy Enemy = null;
+
+
+
     /// <summary>
     /// Destroys Enemy Gameobject after Death Animation Completed
     /// </summary>

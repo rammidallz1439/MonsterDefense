@@ -1,3 +1,4 @@
+using Syntax.Game;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -39,6 +40,6 @@ public class LevelHandler : MonoBehaviour
     public BaseHandler CurrentSelectedBase = null;
     public GameObject SelectionPanel;
     public GameObject LevelSucessPanel;
-    public List<ShootingMachine> SpawnedCharacters;
+    public List<ShootingMachineBase> SpawnedCharacters;
 
 }
