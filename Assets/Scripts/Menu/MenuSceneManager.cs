@@ -186,14 +186,14 @@ public class MenuSceneManager
             Handler.SkillPieces[i].CostText.text = Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].skillTreeDetail.Price.ToString();
             Handler.SkillPieces[i].Price = Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].skillTreeDetail.Price;
         }
-
+/*
         await FirebaseManager.Instance.LoadCollectionDataAsync<LevelData>(GameConstants.LevelDictCollection, GameConstants.LevelDictDocument, (data) =>
         {
             Handler.LevelData = data;
         }, () =>
         {
             MonoHelper.Instance.PrintMessage("Sorry You Dont Have the level data saved in cloud yet", "blue");
-        });
+        });*/
     }
 
     private async void SetPlayerData()
