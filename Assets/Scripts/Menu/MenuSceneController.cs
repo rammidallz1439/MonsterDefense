@@ -19,6 +19,7 @@ namespace BGS.Game
         public void OnRegisterListeners()
         {
             EventManager.Instance.AddListener<MenuSceneInitEvent>(MenuSceneInitEventHandler);
+            EventManager.Instance.AddListener<OnSkilluyButtonEvent>(OnSkilluyButtonEventHandler);
         }
 
         public void OnRelease()
@@ -28,6 +29,7 @@ namespace BGS.Game
         public void OnRemoveListeners()
         {
             EventManager.Instance.RemoveListener<MenuSceneInitEvent>(MenuSceneInitEventHandler);
+            EventManager.Instance.RemoveListener<OnSkilluyButtonEvent>(OnSkilluyButtonEventHandler);
 
         }
 

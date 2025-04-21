@@ -1539,7 +1539,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -195.71997, y: -664.5}
+  m_AnchoredPosition: {x: -204.47, y: -664.5}
   m_SizeDelta: {x: 504.55, y: 174.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &812285584
@@ -3690,8 +3690,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 61.509995, y: -0.000045776367}
-  m_SizeDelta: {x: -215.26, y: -46.4}
+  m_AnchoredPosition: {x: 50.86, y: -0.000045776367}
+  m_SizeDelta: {x: -236.56, y: -46.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1361430752
 MonoBehaviour:
@@ -4433,6 +4433,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 021dc70a04e329743a322cadde5a6840, type: 2}
   - {fileID: 11400000, guid: 510da193be7e0844d812e77cc590bed2, type: 2}
   - {fileID: 11400000, guid: 03970e60c3a16a04d8bc33798a8fd0a7, type: 2}
+  SkillTreeScriptable: {fileID: 11400000, guid: 259fb10139104b94889a2df2690a907b,
+    type: 2}
   NextButton: {fileID: 1260689499}
   PreviousButton: {fileID: 832886127}
   LevelText: {fileID: 697199705}

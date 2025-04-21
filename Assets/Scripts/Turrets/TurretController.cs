@@ -16,6 +16,7 @@ public class TurretController : TurretManager, IController
     public void OnRegisterListeners()
     {
         EventManager.Instance.AddListener<BulletFireEvent>(BulletFireEventHandler);
+        EventManager.Instance.AddListener<SpawnBulletEvent>(SpawnBulletEventHandler);
         EventManager.Instance.AddListener<LookAtTargetEvent>(LookAtTargetEventHandler);
         EventManager.Instance.AddListener<BulletEvent>(BulletEventhandler);
         EventManager.Instance.AddListener<RocketEvent>(RocketEventHandler);
@@ -34,6 +35,7 @@ public class TurretController : TurretManager, IController
     public void OnRemoveListeners()
     {
         EventManager.Instance.RemoveListener<BulletFireEvent>(BulletFireEventHandler);
+        EventManager.Instance.RemoveListener<SpawnBulletEvent>(SpawnBulletEventHandler);
         EventManager.Instance.RemoveListener<LookAtTargetEvent>(LookAtTargetEventHandler);
         EventManager.Instance.RemoveListener<BulletEvent>(BulletEventhandler);
         EventManager.Instance.RemoveListener<RocketEvent>(RocketEventHandler);

@@ -97,10 +97,7 @@ namespace Vault
                     obj.SetActive(activeState);
                     return obj;
                 }
-                else
-                {
-                    Debug.LogError($"All objects in the pool for {key} are null or destroyed!");
-                }
+            
             }
 
             // If no object in the pool, try to create a new one

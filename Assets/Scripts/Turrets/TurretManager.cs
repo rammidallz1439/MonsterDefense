@@ -18,22 +18,32 @@ public class TurretManager
         {
             if (e.ShootingMachineBase.Target != null)
             {
-
-                // GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
-                GameObject ammo = MonoHelper.Instance.InstantiateObject(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject, e.ShootingMachineBase.SpawnPoint);
-                MonoHelper.Instance.PrintMessage("Bullet Created", "red");
-                GenericEventsController.Instance.ChangeAnimationEvent(e.ShootingMachineBase.Animator, GameConstants.CharacterAttack);
-                ammo.transform.position = e.SpawnPoint.position;
-
+                GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
+                ammo.transform.localPosition = e.ShootingMachineBase.SpawnPoint.localPosition;
                 Bullet b = ammo.transform.GetComponent<Bullet>();
                 b.AttackPower = e.ShootingMachineBase.TurretDataScriptable.AttackPower;
                 b.Target = e.ShootingMachineBase.Target.transform;
                 b.TargetPoint = e.ShootingMachineBase.Target.transform.position;
+                GenericEventsController.Instance.ChangeAnimationEvent(e.ShootingMachineBase.Animator, GameConstants.CharacterAttack);
 
             }
             e.ShootingMachineBase.CoolDown = 1f / e.ShootingMachineBase.FireRate;
         }
         e.ShootingMachineBase.CoolDown -= Time.deltaTime;
+    }
+
+    protected void SpawnBulletEventHandler(SpawnBulletEvent e)
+    {
+        GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
+        // ammo.transform.localPosition = e.ShootingMachineBase.SpawnPoint.localPosition;
+        Bullet b = ammo.transform.GetComponent<Bullet>();
+        b.AttackPower = e.ShootingMachineBase.TurretDataScriptable.AttackPower;
+
+        if (e.ShootingMachineBase.Target != null)
+        {
+            b.Target = e.ShootingMachineBase.Target.transform;
+            b.TargetPoint = e.ShootingMachineBase.Target.transform.position;
+        }
     }
     protected void LookAtTargetEventHandler(LookAtTargetEvent e)
     {

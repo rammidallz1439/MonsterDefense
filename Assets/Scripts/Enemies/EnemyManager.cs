@@ -96,6 +96,11 @@ public class EnemyManager
         {
             Enemy enemyComponent = nearestEnemy.GetComponent<Enemy>();
             e.Target.Target = enemyComponent;
+            e.isInRange.Invoke(true);
+        }
+        else
+        {
+            e.isInRange.Invoke(false);
         }
 
     }

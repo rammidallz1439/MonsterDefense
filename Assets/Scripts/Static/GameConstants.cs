@@ -49,5 +49,8 @@ public class GameConstants
 
     public const string LevelData = "LevelData";
     public const string DefinedLevelData = "Data";
+
+    public const string SkillsData = "SkillData";
+    public const string SkillsDataDoc = "TotalSkillsBrought";
     #endregion
 }

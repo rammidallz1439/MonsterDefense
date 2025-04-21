@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SkillTreeData:
     SkillTreeDetails: []
+  PlayerUserId: 
 --- !u!4 &671515201
 Transform:
   m_ObjectHideFlags: 0

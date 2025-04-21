@@ -8268,7 +8268,7 @@ MonoBehaviour:
   _worldCanvas: {fileID: 2140744794430888152}
   _dropValue: 300
   _Coin: {fileID: 6962304540837371318, guid: 17dc0b7eba3a87a49a6f2789f4bb7080, type: 3}
-  AttackPower: 50
+  AttackPower: 10
   Animator: {fileID: 4488417214089207141}
   Reached: 0
   EnemyWeapon: {fileID: 2612167055813631251}

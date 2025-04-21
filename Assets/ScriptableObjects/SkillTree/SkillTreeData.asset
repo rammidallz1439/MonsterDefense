@@ -1,0 +1,71 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b658b9a89e0b6b469d534b23181cc76, type: 3}
+  m_Name: SkillTreeData
+  m_EditorClassIdentifier: 
+  SkillTreeData:
+    SkillTreeItems:
+    - skillTreeDetail:
+        Id: 0
+        Price: 500
+        Description: Increase attack power by 10%
+      Brought: 1
+    - skillTreeDetail:
+        Id: 1
+        Price: 800
+        Description: Increase Health by 10%
+      Brought: 1
+    - skillTreeDetail:
+        Id: 2
+        Price: 1000
+        Description: 'Unlock new Skill for Elf: Fire Arrow'
+      Brought: 0
+    - skillTreeDetail:
+        Id: 3
+        Price: 1500
+        Description: Increase attack power by 30%
+      Brought: 0
+    - skillTreeDetail:
+        Id: 4
+        Price: 1800
+        Description: 'Unlock new Skill for Sorcerer: Health Regeneration'
+      Brought: 0
+    - skillTreeDetail:
+        Id: 5
+        Price: 2000
+        Description: Increase Health by 30%
+      Brought: 0
+    - skillTreeDetail:
+        Id: 6
+        Price: 2300
+        Description: 'Unlock new Skill for Adventurer: Dimension Slash'
+      Brought: 0
+    - skillTreeDetail:
+        Id: 7
+        Price: 2600
+        Description: Increase attack power by 50%
+      Brought: 0
+    - skillTreeDetail:
+        Id: 8
+        Price: 2800
+        Description: Increase Health by 50%
+      Brought: 0
+    - skillTreeDetail:
+        Id: 9
+        Price: 3000
+        Description: 'Unlock new Character: Dwarf'
+      Brought: 0
+    - skillTreeDetail:
+        Id: 10
+        Price: 3500
+        Description: 'Unlock new Skill for Dwarf: Smash'
+      Brought: 0

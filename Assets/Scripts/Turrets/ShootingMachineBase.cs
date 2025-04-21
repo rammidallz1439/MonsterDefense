@@ -8,6 +8,7 @@ namespace Syntax.Game
 {
     public abstract class ShootingMachineBase : MonoBehaviour
     {
+        public Transform AmmoPoint;
         public Transform PartToRotate;
         public Transform SpawnPoint;
         public Enemy Target = null;

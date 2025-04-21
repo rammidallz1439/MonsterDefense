@@ -88,7 +88,7 @@ public class LevelManager
             GameObject obj = MonoHelper.Instance.InstantiateObject(e.Turret, Handler.CurrentSelectedBase.SpawnPoint.transform.position, Quaternion.identity);
             Handler.CurrentSelectedBase.Occupied = true;
             ShootingMachineBase machine = obj.transform.GetComponent<ShootingMachineBase>();
-         //   Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15);
+           Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15,machine.AmmoPoint);
          /*   machine.Timer = Handler.HireDuration;
             machine.SpawnedBase = Handler.CurrentSelectedBase;
             machine.BaseIndex = Handler.CurrentSelectedBase.Id;*/

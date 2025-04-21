@@ -77,8 +77,16 @@ public class LevelData
 [Serializable]
 public class SkillTreeData
 {
-    public List<SkillTreeDetails> SkillTreeDetails;
+    public List<SkillTreeItem> SkillTreeItems;
 }
+
+[Serializable]
+public class SkillTreeItem
+{
+    public SkillTreeDetails skillTreeDetail;
+    public bool Brought;
+}
+
 
 [Serializable]
 public class SkillTreeDetails
@@ -94,6 +102,13 @@ public class PlayerData
     [FirestoreProperty] public int Currency { get; set; }
     [FirestoreProperty] public int CurrentLevel { get; set; }
     [FirestoreProperty] public int CurrentSelectedLevel { get; set; }
+}
+
+
+[FirestoreData]
+public class SKillTreeCloudData
+{
+    [FirestoreProperty] public List<int> SkillsIndex { get; set; }
 }
 #endregion
 

@@ -80,11 +80,11 @@ public class Bullet : MonoBehaviour
 
     private void Update()
     {
-        if (Target == null || Target.gameObject.activeSelf == false)
+    /*    if (Target == null || Target.gameObject.activeSelf == false)
         {
             if (_bulletType != BulletType.Laser)
-                Destroy(gameObject);
-        }
+                Vault.ObjectPoolManager.Instance.ReturnToPool(gameObject);
+        }*/
 
         CheckBulletType(_bulletType);
     }
@@ -96,7 +96,7 @@ public class Bullet : MonoBehaviour
         if (other.gameObject.tag is "Enemy" || other.gameObject.tag is "Ground")
         {
             if (_bulletType != BulletType.Laser)
-                Destroy(gameObject);
+                Vault.ObjectPoolManager.Instance.ReturnToPool(gameObject);
 
         }
 

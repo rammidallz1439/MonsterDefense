@@ -11,6 +11,9 @@ public class MenuSceneHandler : MonoBehaviour
     public int SelectedLevel;
     public PlayerData PlayerData;
     public List<LevelScriptable> Levels;
+    public SkillTreeScriptable SkillTreeScriptable;
+
+
     [Space(10)]
     [Header("UI")]
     public Button NextButton;

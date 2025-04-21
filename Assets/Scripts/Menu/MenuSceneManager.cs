@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using Vault;
@@ -10,6 +11,8 @@ public class MenuSceneManager
     #region Handlers
     protected void MenuSceneInitEventHandler(MenuSceneInitEvent e)
     {
+        Handler.SkillTreeScriptable.SkillTreeData = FirebaseManager.Instance.SkillTreeData;
+        InitSkillTreeDetails();
         SetPlayerData();
 
         Handler.LevelText.text = "LV " + Handler.SelectedLevelIndex.ToString();
@@ -27,10 +30,79 @@ public class MenuSceneManager
 
     }
 
+    protected void OnSkilluyButtonEventHandler(OnSkilluyButtonEvent e)
+    {
+        if (e.SkillPiece.Index > 0)
+        {
+            if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[e.SkillPiece.Index - 1].Brought)
+            {
+                OnSkillBuy(e.SkillPiece);
+            }
+            else
+            {
+                MonoHelper.Instance.PrintMessage("You need to buy the previous skill first", "blue");
+            }
+        }
+        else
+        {
+            OnSkillBuy(e.SkillPiece);
+        }
+
+
+    }
+
     #endregion
 
     #region Methods
 
+
+    private async void InitSkillTreeDetails()
+    {
+        await FirebaseManager.Instance.LoadCollectionDataAsync<SKillTreeCloudData>(GameConstants.SkillsData, GameConstants.SkillsDataDoc,
+      async (data) =>
+      {
+          for (int i = 0; i < data.SkillsIndex.Count; i++)
+          {
+              Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].Brought = true;
+              Handler.SkillPieces[i].CostText.gameObject.SetActive(false);
+              Handler.SkillPieces[i].TickMark.SetActive(true);
+          }
+      },
+      async () =>
+      {
+          MonoHelper.Instance.PrintMessage("Nope you haven't brought any skills yet", "red");
+      });
+    }
+    private async void OnSkillBuy(SkillPiece piece)
+    {
+        if (Handler.PlayerData.Currency >= piece.Price && !Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[piece.Index].Brought)
+        {
+            Handler.PlayerData.Currency -= piece.Price;
+            piece.CostText.gameObject.SetActive(false);
+            piece.TickMark.SetActive(true);
+            Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[piece.Index].Brought = true;
+            await FirebaseManager.Instance.SaveCollectionDataAsync(GameConstants.PlayerData, GameConstants.PlayerDataDoc, Handler.PlayerData);
+
+            await FirebaseManager.Instance.LoadCollectionDataAsync<SKillTreeCloudData>(GameConstants.SkillsData, GameConstants.SkillsDataDoc,
+                async (data) =>
+                {
+                    data.SkillsIndex.Add(piece.Index);
+                    await FirebaseManager.Instance.SaveCollectionDataAsync(GameConstants.SkillsData, GameConstants.SkillsDataDoc, data);
+                },
+                async () =>
+                {
+                    SKillTreeCloudData skilldata = new SKillTreeCloudData();
+                    skilldata.SkillsIndex = new List<int> { piece.Index };
+                    await FirebaseManager.Instance.SaveCollectionDataAsync(GameConstants.SkillsData, GameConstants.SkillsDataDoc, skilldata);
+
+                });
+        }
+        else
+        {
+            MonoHelper.Instance.PrintMessage("You have already brought the skill", "green");
+
+        }
+    }
     private async void OnNextButtonClicked()
     {
         Handler.SelectedLevelIndex++;
@@ -109,10 +181,10 @@ public class MenuSceneManager
         Handler.SkillTreeRect.verticalNormalizedPosition = 0f;
         for (int i = 0; i < Handler.SkillPieces.Count; i++)
         {
-
-            Handler.SkillPieces[i].Description.text = FirebaseManager.Instance.SkillTreeData.SkillTreeDetails[i].Description;
-            Handler.SkillPieces[i].CostText.text = FirebaseManager.Instance.SkillTreeData.SkillTreeDetails[i].Price.ToString();
-            Handler.SkillPieces[i].Price = FirebaseManager.Instance.SkillTreeData.SkillTreeDetails[i].Price;
+            Handler.SkillPieces[i].Index = i;
+            Handler.SkillPieces[i].Description.text = Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].skillTreeDetail.Description;
+            Handler.SkillPieces[i].CostText.text = Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].skillTreeDetail.Price.ToString();
+            Handler.SkillPieces[i].Price = Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[i].skillTreeDetail.Price;
         }
 
         await FirebaseManager.Instance.LoadCollectionDataAsync<LevelData>(GameConstants.LevelDictCollection, GameConstants.LevelDictDocument, (data) =>
@@ -182,7 +254,7 @@ public class MenuSceneManager
                 SceneManager.LoadScene(2);
             });
         }
-      
+
     }
     #endregion
 }

@@ -70,11 +70,13 @@ public struct FindTargetEvent : GameEvent
 {
     public ShootingMachineBase Target;
     public Transform Current;
+    public Action<bool> isInRange;
 
-    public FindTargetEvent(ShootingMachineBase target, Transform current)
+    public FindTargetEvent(ShootingMachineBase target, Transform current, Action<bool> isInRange)
     {
         Target = target;
         Current = current;
+        this.isInRange = isInRange;
     }
 }
 
@@ -96,6 +98,19 @@ public struct BulletFireEvent : GameEvent
     public Transform SpawnPoint;
 
     public BulletFireEvent(ShootingMachineBase shootingMachineBase, Transform spawnPoint)
+    {
+        ShootingMachineBase = shootingMachineBase;
+        SpawnPoint = spawnPoint;
+    }
+}
+
+
+public struct SpawnBulletEvent : GameEvent
+{
+    public ShootingMachineBase ShootingMachineBase;
+    public Transform SpawnPoint;
+
+    public SpawnBulletEvent(ShootingMachineBase shootingMachineBase, Transform spawnPoint)
     {
         ShootingMachineBase = shootingMachineBase;
         SpawnPoint = spawnPoint;
@@ -332,5 +347,15 @@ public struct AddBossAsTargetEvent : GameEvent
     public AddBossAsTargetEvent(Enemy bossEnemy)
     {
         BossEnemy = bossEnemy;
+    }
+}
+
+public struct OnSkilluyButtonEvent : GameEvent
+{
+    public SkillPiece SkillPiece;
+
+    public OnSkilluyButtonEvent(SkillPiece skillPiece)
+    {
+        SkillPiece = skillPiece;
     }
 }

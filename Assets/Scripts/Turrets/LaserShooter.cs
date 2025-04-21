@@ -17,10 +17,15 @@ namespace Syntax.Game
         {
             // EventManager.Instance.TriggerEvent(new BulletFireEvent(CoolDown, FireRate, Target, TurretDataScriptable, SpawnPoint, Animator));
 
-            EventManager.Instance.TriggerEvent(new FindTargetEvent(this, transform));
+            EventManager.Instance.TriggerEvent(new FindTargetEvent(this, transform, (isInRange) =>
+            {
+                if (isInRange)
+                {
+                    EventManager.Instance.TriggerEvent(new LaserShootEvent(CoolDown, FireRate, Target, TurretDataScriptable, LaserPointer));
+                }
+            }));
 
             //    EventManager.Instance.TriggerEvent(new LookAtTargetEvent(Target, PartToRotate));
-            EventManager.Instance.TriggerEvent(new LaserShootEvent(CoolDown, FireRate, Target, TurretDataScriptable, LaserPointer));
         }
 
     }
