@@ -88,10 +88,10 @@ public class LevelManager
             GameObject obj = MonoHelper.Instance.InstantiateObject(e.Turret, Handler.CurrentSelectedBase.SpawnPoint.transform.position, Quaternion.identity);
             Handler.CurrentSelectedBase.Occupied = true;
             ShootingMachineBase machine = obj.transform.GetComponent<ShootingMachineBase>();
-           Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15,machine.AmmoPoint);
-         /*   machine.Timer = Handler.HireDuration;
-            machine.SpawnedBase = Handler.CurrentSelectedBase;
-            machine.BaseIndex = Handler.CurrentSelectedBase.Id;*/
+            Vault.ObjectPoolManager.Instance.InitializePool(machine.TurretDataScriptable.Bullet.gameObject, 15, machine.AmmoPoint);
+            /*   machine.Timer = Handler.HireDuration;
+               machine.SpawnedBase = Handler.CurrentSelectedBase;
+               machine.BaseIndex = Handler.CurrentSelectedBase.Id;*/
             Handler.SpawnedCharacters.Add(machine);
             Handler.BaseSelected = false;
         }
@@ -145,13 +145,13 @@ public class LevelManager
     }
 
 
-/*    protected void RemoveSpawnedCharactersEventHandler(RemoveSpawnedCharactersEvent e)
-    {
-        e.Machine.SpawnedBase.transform.GetComponent<MeshRenderer>().material.color = Handler.CurrentSelectedBase.GetColor();
-        e.Machine.SpawnedBase.Occupied = false;
-        Handler.SpawnedCharacters.Remove(e.Machine);
-    }
-*/
+    /*    protected void RemoveSpawnedCharactersEventHandler(RemoveSpawnedCharactersEvent e)
+        {
+            e.Machine.SpawnedBase.transform.GetComponent<MeshRenderer>().material.color = Handler.CurrentSelectedBase.GetColor();
+            e.Machine.SpawnedBase.Occupied = false;
+            Handler.SpawnedCharacters.Remove(e.Machine);
+        }
+    */
 
     protected void UpdateCurrentCoinsEventHandler(UpdateCurrentCoinsEvent e)
     {
@@ -185,6 +185,58 @@ public class LevelManager
         {
             MonoHelper.Instance.PrintMessage("Data noesn't Exsists check firebase", "black");
         });
+    }
+
+
+    protected void OnAttackSkillEventHandler(OnAttackSkillEvent e)
+    {
+        if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[0].Brought)
+        {
+            float percent = e.ShootingMachineBase.AttackPower / 100;
+            float increased = percent * 10;
+            e.AttackPower.Invoke(increased);
+        }
+        else if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[3].Brought)
+        {
+            float percent = e.ShootingMachineBase.AttackPower / 100;
+            float increased = percent * 30;
+            e.AttackPower.Invoke(increased);
+        }
+        else if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[7].Brought)
+        {
+            float percent = e.ShootingMachineBase.AttackPower / 100;
+            float increased = percent * 50;
+            e.AttackPower.Invoke(increased);
+        }
+        else
+        {
+            MonoHelper.Instance.PrintMessage("No attack skill brought", "green");
+        }
+    }
+    protected void OnHealthSkillEventHandler(OnHealthSkillEvent e)
+    {
+        if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[1].Brought)
+        {
+            float percent = e.Health / 100;
+            float increased = percent * 10;
+            e.HealthIncreased.Invoke(percent);
+        }
+        else if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[5].Brought)
+        {
+            float percent = e.Health / 100;
+            float increased = percent * 30;
+            e.HealthIncreased.Invoke(percent);
+        }
+        else if (Handler.SkillTreeScriptable.SkillTreeData.SkillTreeItems[8].Brought)
+        {
+            float percent = e.Health / 100;
+            float increased = percent * 50;
+            e.HealthIncreased.Invoke(percent);
+        }
+        else
+        {
+            MonoHelper.Instance.PrintMessage("No Health skill brought", "green");
+        }
     }
     #endregion
 
@@ -240,27 +292,27 @@ public class LevelManager
         }
     }
 
-/*    protected void SavedHiredDataOnDestroyEventHandler()
-    {
-        Debug.Log("<color=red> came to SaveData</color>");
-        if (Handler.SpawnedCharacters.Count > 0)
+    /*    protected void SavedHiredDataOnDestroyEventHandler()
         {
-            foreach (var item in Handler.SpawnedCharacters)
+            Debug.Log("<color=red> came to SaveData</color>");
+            if (Handler.SpawnedCharacters.Count > 0)
             {
-                HireData data = new HireData
+                foreach (var item in Handler.SpawnedCharacters)
                 {
-                    BaseIndex = item.BaseIndex,
-                    CharacterIndex = item.Index,
-                    SavedTimer = item.Timer,
-                    LastSavedTime = DateTime.UtcNow
-                };
-                Handler.HireHandler.HireDataToSave.Add(data);
+                    HireData data = new HireData
+                    {
+                        BaseIndex = item.BaseIndex,
+                        CharacterIndex = item.Index,
+                        SavedTimer = item.Timer,
+                        LastSavedTime = DateTime.UtcNow
+                    };
+                    Handler.HireHandler.HireDataToSave.Add(data);
+                }
+                Handler.HireHandler.SavedHireData.HireData = Handler.HireHandler.HireDataToSave;
+                // DataManager.Instance.SaveJson(Handler.HireHandler.SavedHireData, GameConstants.SaveHireData);
             }
-            Handler.HireHandler.SavedHireData.HireData = Handler.HireHandler.HireDataToSave;
-            // DataManager.Instance.SaveJson(Handler.HireHandler.SavedHireData, GameConstants.SaveHireData);
-        }
 
-    }*/
+        }*/
 
     #endregion
 }

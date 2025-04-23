@@ -8,5 +8,4 @@ public class TurretHandler : MonoBehaviour
     [Header("Data")]
     public float RotationSpeed;
 
-
 }

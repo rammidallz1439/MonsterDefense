@@ -16,6 +16,8 @@ namespace Syntax.Game
         public float CoolDown;
         public float FireRate;
         public Animator Animator;
+        public float AttackPower;
+
 
         [Space(10)]
         [Header("Laser Specific")]
@@ -25,10 +27,19 @@ namespace Syntax.Game
         [Space(10)]
         public Camera Camera = null;
 
+        private void Start()
+        {
+            Init();
+        }
         private void Update()
         {
             Excute();
         }
+
+        /// <summary>
+        /// set initial state here
+        /// </summary>
+        public abstract void Init();
 
         /// <summary>
         /// call this in all the shooters

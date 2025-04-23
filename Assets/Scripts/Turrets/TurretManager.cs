@@ -21,7 +21,7 @@ public class TurretManager
                 GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
                 ammo.transform.localPosition = e.ShootingMachineBase.SpawnPoint.localPosition;
                 Bullet b = ammo.transform.GetComponent<Bullet>();
-                b.AttackPower = e.ShootingMachineBase.TurretDataScriptable.AttackPower;
+                b.AttackPower = e.ShootingMachineBase.AttackPower;
                 b.Target = e.ShootingMachineBase.Target.transform;
                 b.TargetPoint = e.ShootingMachineBase.Target.transform.position;
                 GenericEventsController.Instance.ChangeAnimationEvent(e.ShootingMachineBase.Animator, GameConstants.CharacterAttack);
@@ -37,7 +37,7 @@ public class TurretManager
         GameObject ammo = ObjectPoolManager.Instance.Get(e.ShootingMachineBase.TurretDataScriptable.Bullet.gameObject.name, true);
         // ammo.transform.localPosition = e.ShootingMachineBase.SpawnPoint.localPosition;
         Bullet b = ammo.transform.GetComponent<Bullet>();
-        b.AttackPower = e.ShootingMachineBase.TurretDataScriptable.AttackPower;
+        b.AttackPower = e.ShootingMachineBase.AttackPower;
 
         if (e.ShootingMachineBase.Target != null)
         {
@@ -167,22 +167,22 @@ public class TurretManager
 
     protected void LaserShootEventHandler(LaserShootEvent e)
     {
-        if (e.CoolDown <= 0)
+        if (e.ShootingMachineBase.CoolDown <= 0)
         {
-            if (e.Target != null && e.TurretDataScriptable != null)
+            if (e.ShootingMachineBase.Target != null )
             {
-                if (e.LaserPointer != null)
+                if (e.ShootingMachineBase.LaserPointer != null)
                 {
-                    e.LaserPointer.gameObject.SetActive(true);
-                    e.LaserPointer.transform.position = e.Target.transform.position + new Vector3(0, 1.5f, 0);
-                    e.LaserPointer.AttackPower = e.TurretDataScriptable.AttackPower;
-                    e.LaserPointer.Target = e.Target.transform;
+                    e.ShootingMachineBase.LaserPointer.gameObject.SetActive(true);
+                    e.ShootingMachineBase.LaserPointer.transform.position = e.ShootingMachineBase.Target.transform.position + new Vector3(0, 1.5f, 0);
+                    e.ShootingMachineBase.LaserPointer.AttackPower = e.ShootingMachineBase.AttackPower;
+                    e.ShootingMachineBase.LaserPointer.Target = e.ShootingMachineBase.Target.transform;
                 }
 
             }
-            e.CoolDown = 1f / e.FireRate;
+            e.ShootingMachineBase.CoolDown = 1f / e.ShootingMachineBase.FireRate;
         }
-        e.CoolDown -= Time.deltaTime;
+        e.ShootingMachineBase.CoolDown -= Time.deltaTime;
     }
 
     protected void ChangeToIdleAnimationEventHandler(ChangeToIdleAnimationEvent e)

@@ -26,14 +26,21 @@ namespace Syntax.Game
                 {
                     EventManager.Instance.TriggerEvent(new LookAtTargetEvent(Target, PartToRotate));
                     EventManager.Instance.TriggerEvent(new BulletFireEvent(this, transform));
-                 //   EventManager.Instance.TriggerEvent(new SpawnBulletEvent(this, transform));
+                    //   EventManager.Instance.TriggerEvent(new SpawnBulletEvent(this, transform));
 
                 }
             }));
-      
+
         }
 
-
+        public override void Init()
+        {
+            AttackPower = TurretDataScriptable.AttackPower;
+            EventManager.Instance.TriggerEvent(new OnAttackSkillEvent(this, (increasedValue) =>
+            {
+                AttackPower += increasedValue;
+            }));
+        }
     }
 }
 

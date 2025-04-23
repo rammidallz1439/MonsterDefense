@@ -6,4 +6,6 @@ using UnityEngine;
 public class SkillTreeScriptable : ScriptableObject
 {
     public SkillTreeData SkillTreeData;
+
+
 }

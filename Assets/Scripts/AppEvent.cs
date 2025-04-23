@@ -184,19 +184,11 @@ public struct CoinDobberAnimation : GameEvent
 
 public struct LaserShootEvent : GameEvent
 {
-    public float CoolDown;
-    public float FireRate;
-    public Enemy Target;
-    public TurretDataScriptable TurretDataScriptable;
-    public Bullet LaserPointer;
+    public ShootingMachineBase ShootingMachineBase;
 
-    public LaserShootEvent(float coolDown, float fireRate, Enemy target, TurretDataScriptable turretDataScriptable, Bullet laserPointer)
+    public LaserShootEvent(ShootingMachineBase shootingMachineBase)
     {
-        CoolDown = coolDown;
-        FireRate = fireRate;
-        Target = target;
-        TurretDataScriptable = turretDataScriptable;
-        LaserPointer = laserPointer;
+        ShootingMachineBase = shootingMachineBase;
     }
 }
 
@@ -358,4 +350,48 @@ public struct OnSkilluyButtonEvent : GameEvent
     {
         SkillPiece = skillPiece;
     }
+}
+
+
+public struct OnAttackSkillEvent : GameEvent
+{
+    public Action<float> AttackPower;
+    public ShootingMachineBase ShootingMachineBase;
+
+    public OnAttackSkillEvent( ShootingMachineBase shootingMachineBase, Action<float> attackPower)
+    {
+        AttackPower = attackPower;
+        ShootingMachineBase = shootingMachineBase;
+    }
+}
+
+public struct OnHealthSkillEvent : GameEvent
+{
+    public float Health;
+    public Action<float> HealthIncreased;
+
+    public OnHealthSkillEvent(float health, Action<float> healthIncreased)
+    {
+        Health = health;
+        HealthIncreased = healthIncreased;
+    }
+}
+
+public struct OnElfSkillEvent : GameEvent
+{
+
+}
+public struct OnSorcererSkillEvent : GameEvent
+{
+
+}
+
+public struct OnAdventurerSkillEvent : GameEvent
+{
+
+}
+
+public struct OnDwarfSkillEvent : GameEvent
+{
+
 }

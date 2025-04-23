@@ -31,6 +31,9 @@ namespace Syntax.Game
 
         }
 
+        public override void Init()
+        {
+        }
     }
 
 }

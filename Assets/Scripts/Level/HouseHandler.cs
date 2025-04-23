@@ -12,8 +12,17 @@ public class HouseHandler : MonoBehaviour
 
     private void Start()
     {
-        _healthBar.maxValue = _health;
-        _healthBar.value = _health;
+        EventManager.Instance.TriggerEvent(new OnHealthSkillEvent(_health, (increased) =>
+        {
+            _health += increased;
+            _healthBar.maxValue = _health;
+            _healthBar.value = _health;
+
+        }));
+
+     
+
+      
     }
     private void OnTriggerEnter(Collider other)
     {
@@ -24,7 +33,7 @@ public class HouseHandler : MonoBehaviour
                 other.transform.GetComponent<Enemy>().Reached = true;
                 GenericEventsController.Instance.ChangeAnimationEvent(other.transform.GetComponent<Enemy>().Animator, GameConstants.EnemyAttack);
             }
-       
+
         }
 
         if (other.gameObject.tag is "EnemyWeapon")

@@ -240,7 +240,7 @@ public class MenuSceneManager
                 await FirebaseManager.Instance.SaveCollectionDataAsync(GameConstants.LevelData, GameConstants.DefinedLevelData, Handler.LevelData);
 
             });
-
+ 
 
     }
 

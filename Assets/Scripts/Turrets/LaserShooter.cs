@@ -21,13 +21,16 @@ namespace Syntax.Game
             {
                 if (isInRange)
                 {
-                    EventManager.Instance.TriggerEvent(new LaserShootEvent(CoolDown, FireRate, Target, TurretDataScriptable, LaserPointer));
+                    EventManager.Instance.TriggerEvent(new LaserShootEvent(this));
                 }
             }));
 
             //    EventManager.Instance.TriggerEvent(new LookAtTargetEvent(Target, PartToRotate));
         }
 
+        public override void Init()
+        {
+        }
     }
 }
 

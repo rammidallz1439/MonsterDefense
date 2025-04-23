@@ -24,6 +24,7 @@ public class LevelHandler : MonoBehaviour
     public int CurrentCoins;
     public int CurrentLevel;
     public bool WavesCompleted;
+    public SkillTreeScriptable SkillTreeScriptable;
 
     [Space(10)]
     [Header("UI")]
